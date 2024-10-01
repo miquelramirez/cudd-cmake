@@ -1184,7 +1184,7 @@ ZDD::operator-=(
 ZDD
 ZDD::operator~() const
 {
-  DdNode *result = Cudd_zddComplement(p->manager, node);
+  DdNode *result = Cudd_zddDiff(p->manager, p->manager->univ[0], node);
   checkReturnValue(result);
   return ZDD(p, result);
 } // ZDD::operator~
