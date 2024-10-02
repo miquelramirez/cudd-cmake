@@ -5714,6 +5714,15 @@ BDD::PickOneCube(
 
 } // BDD::PickOneCube
 
+void
+ADD::PickOneCube(
+  char * string) const
+{
+    DdManager *mgr = p->manager;
+    int result = Cudd_addPickOneCube(mgr, node, string);
+    checkReturnValue(result);
+} // ADD::PickOneCube
+
 
 BDD
 BDD::PickOneMinterm(
@@ -5731,6 +5740,15 @@ BDD::PickOneMinterm(
     return BDD(p, result);
 
 } // BDD::PickOneMinterm
+
+
+ADD
+ADD::PickOneMintermSet(const ADD& choice) const
+{
+    DdNode *result = Cudd_addPickOneMintermSet(p->manager, node, choice.node);
+    checkReturnValue(result);
+    return ADD(p, result);
+} // ADD::PickOneMintermSet
 
 
 BDD
