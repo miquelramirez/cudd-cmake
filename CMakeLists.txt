@@ -225,3 +225,19 @@ if(DOXYGEN)
 else(DOXYGEN)
   message(STATUS "Doxygen not found, CUDD API documentation cannot be generated.")
 endif(DOXYGEN)
+
+set(MANUAL_IN ${CMAKE_CURRENT_SOURCE_DIR}/doc/cudd.tex.in)
+set(MANUAL_OUT ${CMAKE_CURRENT_SOURCE_DIR}/doc/cudd.tex)
+configure_file(${MANUAL_IN} ${MANUAL_OUT} @ONLY)
+
+find_package(LATEX COMPONENTS PDFLATEX BIBTEX)
+
+if (LATEX_FOUND)
+  add_custom_target(cudd-user-guide
+    COMMAND ${PDFLATEX_COMPILER} ${MANUAL_OUT}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Generating CuDD user's guide"
+    VERBATIM)
+else (LATEX_FOUND)
+  message(STATUS "Latex tools not found, CUDD user's guide could not be generated.")
+endif(LATEX_FOUND)
