@@ -58,12 +58,10 @@ set(CUDD_C_SOURCES
   cuddEssent.c
   cuddMatMult.c
   cuddUtil.c
-  testcudd.c
   cuddAPI.c
   cuddExact.c
   cuddPriority.c
   cuddWindow.c
-  testextra.c
   cuddApprox.c
   cuddExport.c
   cuddRead.c
